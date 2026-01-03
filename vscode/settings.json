@@ -134,6 +134,17 @@
     },
 
     // ======================
+    // Wide Action Bar
+    // ======================
+
+    ".monaco-workbench .composite-bar": {
+      "min-width": "100% !important",
+      ".monaco-action-bar .actions-container": {
+        "justify-content": "space-between !important"
+      }
+    },
+
+    // ======================
     // Titlebar / Tabs height
     // ======================
     ".part.sidebar.left .composite.title": {
