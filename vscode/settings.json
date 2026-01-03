@@ -137,7 +137,7 @@
     // Wide Action Bar
     // ======================
 
-    ".monaco-workbench .composite-bar": {
+    ".part.sidebar.left .composite-bar": {
       "min-width": "100% !important",
       ".monaco-action-bar .actions-container": {
         "justify-content": "space-between !important"
