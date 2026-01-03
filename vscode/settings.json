@@ -26,6 +26,9 @@
   "typescript.updateImportsOnFileMove.enabled": "never",
   "javascript.updateImportsOnFileMove.enabled": "never",
 
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 100,
+  
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
 
@@ -172,5 +175,5 @@
     ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
       "padding-left": "82px !important"
     }
-  },
+  },"remote.SSH.remotePlatform": {"coder-vscode.coder.techwithanirudh.com--techwithanirudh--ai-sdk-add-me.ai-sdk-add-me":"linux"},"remote.SSH.connectTimeout": 1800
 }
