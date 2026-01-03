@@ -167,6 +167,10 @@
 
     ".monaco-workbench:not(.fullscreen) .part.activitybar.left > .content": {
       "padding-top": "var(--titlebar-height) !important"
+    },
+
+    ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
+      "padding-left": "82px !important"
     }
-  }
+  },
 }
