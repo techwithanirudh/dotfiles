@@ -88,8 +88,8 @@
 
   "custom-ui-style.stylesheet": {
     ".monaco-workbench": {
-      "--activitybar-width": "77px",
-      "--titlebar-height": "37px"
+      "--activitybar-width": "84px",
+      "--titlebar-height": "38px"
     },
 
     // Remove overview ruler
@@ -190,11 +190,12 @@
     },
 
     ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
-      "padding-left": "82px !important"
+      "padding-left": "var(--activitybar-width) !important"
     }
   },
   "remote.SSH.remotePlatform": {
-    "coder-vscode.coder.techwithanirudh.com--techwithanirudh--ai-sdk-add-me.ai-sdk-add-me": "linux"
+    "coder-vscode.coder.techwithanirudh.com--techwithanirudh--ai-sdk-add-me.ai-sdk-add-me": "linux",
+    "coder-vscode.coder.techwithanirudh.com--techwithanirudh--coolify-tweaks-dc.coolify-tweaks": "linux"
   },
   "remote.SSH.connectTimeout": 1800,
   "[jsonc]": {
