@@ -118,22 +118,6 @@
     },
 
     // ======================
-    // Wide Activity Bar
-    // ======================
-
-    ".part.activitybar.left": {
-      "min-width": "var(--activitybar-width) !important",
-
-      ".monaco-action-bar .action-label": {
-        "width": "var(--activitybar-width) !important"
-      }
-    },
-
-    ".part.activitybar.left > .content": {
-      "min-width": "var(--activitybar-width) !important"
-    },
-
-    // ======================
     // Wide Action Bar
     // ======================
 
