@@ -139,22 +139,9 @@
       "font-size": "85%"
     },
 
-    // Show search inputs and results in monospaced font.
+    // Search inputs / Results in monospaced font.
     ".search-widget textarea, .find-widget textarea, .search-view .results .match": {
       "font-family": "var(--cus-monospace-font) !important"
-    },
-
-    // Drag regions
-    ".monaco-workbench:not(.fullscreen) .activitybar, .monaco-workbench:not(.fullscreen) .statusbar, .monaco-workbench:not(.fullscreen) .tabs-container, .monaco-workbench:not(.fullscreen) .sidebar .composite.title": {
-      "-webkit-app-region": "drag"
-    },
-
-    ".monaco-workbench:not(.fullscreen) .activitybar .content .monaco-action-bar, .monaco-workbench:not(.fullscreen) .statusbar-item, .monaco-workbench:not(.fullscreen) .tab, .monaco-workbench:not(.fullscreen) .title .title-actions .action-label": {
-      "-webkit-app-region": "no-drag"
-    },
-
-    ".monaco-workbench:not(.fullscreen) .part.activitybar.left > .content": {
-      "padding-top": "var(--titlebar-height) !important"
     },
 
     ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
