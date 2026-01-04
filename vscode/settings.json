@@ -92,12 +92,11 @@
       "--titlebar-height": "38px"
     },
 
-    // Remove overview ruler
     ".editor .decorationsOverviewRuler": {
       "display": "none !important"
     },
 
-    // Scrollbar styling
+    // Scrollbar
     "div.visible.scrollbar.vertical .slider": {
       "border-radius": "10px !important",
       "left": "-4px !important"
@@ -117,10 +116,7 @@
       "display": "none"
     },
 
-    // ======================
     // Wide Action Bar
-    // ======================
-
     ".part.sidebar.left .composite-bar": {
       "min-width": "100% !important",
       ".monaco-action-bar .actions-container": {
@@ -128,19 +124,17 @@
       }
     },
 
-    // ======================
-    // Titlebar / Tabs height
-    // ======================
+    // Titlebar
     ".part.sidebar.left .composite.title": {
       "&, .title-actions, .global-actions, .monaco-toolbar": {
-        "height": "var(--titlebar-height) !important"
+        "height": "var(--titlebar-height)"
       },
 
       ".title-label": {
-        "line-height": "var(--titlebar-height) !important"
+        "line-height": "var(--titlebar-height)"
       },
 
-      "border-bottom": "1px solid var(--vscode-sideBar-border) !important"
+      "border-bottom": "1px solid var(--vscode-sideBar-border)"
     },
 
     ".title.tabs": {
@@ -157,10 +151,7 @@
       "font-family": "var(--cus-monospace-font) !important"
     },
 
-    // ======================
     // Drag regions
-    // ======================
-
     ".monaco-workbench:not(.fullscreen) .activitybar, .monaco-workbench:not(.fullscreen) .statusbar, .monaco-workbench:not(.fullscreen) .tabs-container, .monaco-workbench:not(.fullscreen) .sidebar .composite.title": {
       "-webkit-app-region": "drag"
     },
