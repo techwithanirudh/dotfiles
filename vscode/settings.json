@@ -8,6 +8,8 @@
   "terminal.integrated.allowChords": false,
   "terminal.integrated.macOptionIsMeta": true,
   "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
 
   "workbench.activityBar.location": "bottom",
   "workbench.editor.highlightModifiedTabs": true,
@@ -147,13 +149,5 @@
     ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
       "padding-left": "var(--activitybar-width) !important"
     }
-  },
-  "remote.SSH.remotePlatform": {
-    "coder-vscode.coder.techwithanirudh.com--techwithanirudh--ai-sdk-add-me.ai-sdk-add-me": "linux",
-    "coder-vscode.coder.techwithanirudh.com--techwithanirudh--coolify-tweaks-dc.coolify-tweaks": "linux"
-  },
-  "remote.SSH.connectTimeout": 1800,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
