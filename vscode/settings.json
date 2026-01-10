@@ -15,7 +15,6 @@
   "outline.showProperties": false,
 
   "window.titleBarStyle": "native",
-  "window.customTitleBarVisibility": "never",
   "window.commandCenter": false,
 
   "typescript.updateImportsOnFileMove.enabled": "never",
@@ -81,10 +80,15 @@
 
   "custom-ui-style.electron": {
     "titleBarStyle": "hiddenInset",
-    "trafficLightPosition": {
-      "x": 12,
-      "y": 12
-    }
+    "trafficLightPosition": { "x": 12, "y": 12 },
+
+    "transparent": true,
+    "backgroundColor": "#00000000",
+
+    "opacity": 0.98,
+
+    "vibrancy": "ultra-dark",
+    "visualEffectState": "active"
   },
 
   "custom-ui-style.stylesheet": {
@@ -154,6 +158,19 @@
 
     ".monaco-workbench.nosidebar .part.editor > .content .editor-group-container > .title .tabs-container": {
       "padding-left": "var(--activitybar-width) !important"
+    },
+
+    ".monaco-workbench .part.sidebar > .title, .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container, .monaco-workbench .part.statusbar": {
+      "-webkit-app-region": "drag",
+
+      // Allow interaction on tabs and action items
+      ".tab, .monaco-action-bar, .statusbar-item, .title-actions .action-label": {
+        "-webkit-app-region": "no-drag"
+      }
     }
-  }
+  },
+  "window.customTitleBarVisibility": "never",
+  "claudeCode.preferredLocation": "sidebar",
+  "claudeCode.allowDangerouslySkipPermissions": true,
+  "claudeCode.initialPermissionMode": "bypassPermissions"
 }
