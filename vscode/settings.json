@@ -82,12 +82,13 @@
     "titleBarStyle": "hiddenInset",
     "trafficLightPosition": { "x": 12, "y": 12 },
 
+    "frame": false,
     "transparent": true,
-    "backgroundColor": "#00000000",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
 
     "opacity": 0.98,
 
-    "vibrancy": "ultra-dark",
+    "vibrancy": "fullscreen-ui",
     "visualEffectState": "active"
   },
 
