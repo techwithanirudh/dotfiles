@@ -131,6 +131,7 @@
 
     // Titlebar
     ".part.sidebar.left .composite.title": {
+      "-webkit-app-region": "drag",
       "&, .title-actions, .global-actions, .monaco-toolbar": {
         "height": "var(--titlebar-height)"
       },
@@ -160,11 +161,20 @@
       "padding-left": "var(--activitybar-width) !important"
     },
 
-    ".monaco-workbench .part.sidebar > .title, .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container, .monaco-workbench .part.statusbar": {
+    ".monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container, .monaco-workbench .part.statusbar": {
       "-webkit-app-region": "drag",
 
       // Allow interaction on tabs and action items
       ".tab, .monaco-action-bar, .statusbar-item, .title-actions .action-label": {
+        "-webkit-app-region": "no-drag"
+      }
+    },
+
+    ".monaco-workbench .part.sidebar > .title": {
+      "-webkit-app-region": "drag",
+
+      // Allow interaction on tabs and action items
+      ".statusbar-item, .title-actions .action-label": {
         "-webkit-app-region": "no-drag"
       }
     }
@@ -172,5 +182,8 @@
   "window.customTitleBarVisibility": "never",
   "claudeCode.preferredLocation": "sidebar",
   "claudeCode.allowDangerouslySkipPermissions": true,
-  "claudeCode.initialPermissionMode": "bypassPermissions"
+  "claudeCode.initialPermissionMode": "bypassPermissions",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
