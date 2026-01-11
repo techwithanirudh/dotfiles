@@ -80,16 +80,7 @@
 
   "custom-ui-style.electron": {
     "titleBarStyle": "hiddenInset",
-    "trafficLightPosition": { "x": 12, "y": 12 },
-
-    "frame": false,
-    "transparent": true,
-    "backgroundColor": "rgba(0, 0, 0, 0)",
-
-    "opacity": 0.98,
-
-    "vibrancy": "fullscreen-ui",
-    "visualEffectState": "active"
+    "trafficLightPosition": { "x": 12, "y": 12 }
   },
 
   "custom-ui-style.stylesheet": {
