@@ -14,13 +14,6 @@ fi
 
 mkdir -p "$HOME/.local/bin"
 
-# Prefer package managers when available.
-if command -v brew >/dev/null 2>&1; then
-	echo "installing starship via brew"
-	brew install starship
-	exit 0
-fi
-
 # Fallback to official installer.
 echo "installing starship via upstream installer"
 curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"

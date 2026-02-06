@@ -31,3 +31,7 @@ Environment knobs:
 - `codex/`: codex install
 - `opencode/`: opencode install
 - `editors/vscode/`: VS Code and code-server settings linking
+
+## Tool Config
+
+- OpenCode global config is provided at `config/opencode/opencode.json` (linked to `~/.config/opencode/opencode.json` by `script/bootstrap`).

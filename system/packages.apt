@@ -1,0 +1,8 @@
+# Base packages these dotfiles/installers assume exist.
+curl
+file
+git
+procps
+unzip
+zip
+build-essential

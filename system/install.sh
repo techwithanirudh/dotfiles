@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Base packages these dotfiles assume exist.
+# Base packages these dotfiles/installers assume exist.
 as_root() {
 	if [[ "$(id -u)" == "0" ]]; then
 		"$@"
@@ -15,14 +15,13 @@ as_root() {
 	return 1
 }
 
-as_root apt-get update -y
-as_root apt-get install -y \
-	curl \
-	file \
-	git \
-	procps \
-	unzip \
-	zip
+packages_file="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)/packages.apt"
+if [[ ! -f "$packages_file" ]]; then
+	echo "missing packages list: $packages_file" >&2
+	exit 1
+fi
 
-# Homebrew on Linux needs build tools.
-as_root apt-get install -y build-essential
+mapfile -t packages < <(grep -Ev '^[[:space:]]*(#|$)' "$packages_file")
+
+as_root apt-get update -y
+as_root apt-get install -y "${packages[@]}"
