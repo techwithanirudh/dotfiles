@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Shared utilities for dotfiles scripts.
-# Assumes script/lib/log.sh has already been sourced (info/success/fail).
-
 has_cmd() { command -v "$1" >/dev/null 2>&1; }
 
 need_cmd() {
