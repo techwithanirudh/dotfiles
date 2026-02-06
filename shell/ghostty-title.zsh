@@ -1,4 +1,4 @@
-export STARSHIP_CONFIG="${HOME}/.config/starship.toml"
+# shell/ghostty-title.zsh
 
 autoload -Uz add-zsh-hook
 
@@ -34,12 +34,3 @@ __ghostty_title_preexec() {
 
 add-zsh-hook precmd __ghostty_title_precmd
 add-zsh-hook preexec __ghostty_title_preexec
-
-eval "$(starship init zsh)"
-
-for file in "$HOME/.exports" "$HOME/.aliases"; do
-	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-		# shellcheck source=/dev/null
-		source "$file"
-	fi
-done

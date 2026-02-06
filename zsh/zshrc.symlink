@@ -1,0 +1,33 @@
+# zshrc.symlink
+
+# Compute dotfiles root from the absolute, resolved path of this file.
+# ~/.zshrc is symlinked to .../dotfiles/zsh/zshrc.symlink.
+if [[ -z "${DOTFILES:-}" ]]; then
+	zshrc_real="${${(%):-%N}:A}"
+	export DOTFILES="${zshrc_real:h:h}"
+	unset zshrc_real
+fi
+
+# Load all topic configs.
+# - path.zsh first
+# - completion.zsh last
+# - everything else in between
+for topic in "$DOTFILES"/*; do
+	[[ -d "$topic" ]] || continue
+	[[ -f "$topic/path.zsh" ]] && source "$topic/path.zsh"
+done
+
+for topic in "$DOTFILES"/*; do
+	[[ -d "$topic" ]] || continue
+	for file in "$topic"/*.zsh; do
+		[[ -f "$file" ]] || continue
+		[[ "$file" == */path.zsh ]] && continue
+		[[ "$file" == */completion.zsh ]] && continue
+		source "$file"
+	done
+done
+
+for topic in "$DOTFILES"/*; do
+	[[ -d "$topic" ]] || continue
+	[[ -f "$topic/completion.zsh" ]] && source "$topic/completion.zsh"
+done

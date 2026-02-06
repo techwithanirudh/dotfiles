@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT="$(pwd -P)"
+
+info() { printf "[..] %s\n" "$*"; }
+ok() { printf "[OK] %s\n" "$*"; }
+warn() { printf "[WARN] %s\n" "$*"; }
+
+backup_path() {
+	local dst="$1"
+	local ts
+	ts="$(date +%Y%m%d%H%M%S)"
+	printf '%s.backup.%s' "$dst" "$ts"
+}
+
+link_file() {
+	local src="$1" dst="$2"
+
+	if [[ -L "$dst" ]]; then
+		local current
+		current="$(readlink "$dst" || true)"
+		if [[ "$current" == "$src" ]]; then
+			ok "already linked $dst"
+			return
+		fi
+	fi
+
+	if [[ -e "$dst" || -L "$dst" ]]; then
+		if [[ "${DOTFILES_FORCE:-}" == "1" ]]; then
+			rm -rf "$dst"
+			ok "removed $dst"
+		else
+			local backup
+			backup="$(backup_path "$dst")"
+			mv "$dst" "$backup"
+			ok "moved $dst to $backup"
+		fi
+	fi
+
+	ln -s "$src" "$dst"
+	ok "linked $dst"
+}
+
+install_dotfiles() {
+	info "linking *.symlink into $HOME"
+
+	while IFS= read -r src; do
+		local base dst
+		base="$(basename "${src%.*}")"
+		dst="$HOME/.${base}"
+		link_file "$src" "$dst"
+	done < <(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*/.git/*' | sort)
+}
+
+install_config() {
+	if [[ ! -d "$DOTFILES_ROOT/config" ]]; then
+		return
+	fi
+
+	info "linking config/* into $HOME/.config"
+	mkdir -p "$HOME/.config"
+
+	while IFS= read -r src; do
+		local rel dst_dir dst
+		rel="${src#"$DOTFILES_ROOT/config/"}"
+		dst_dir="$HOME/.config/$(dirname "$rel")"
+		dst="$HOME/.config/$rel"
+		mkdir -p "$dst_dir"
+		link_file "$src" "$dst"
+	done < <(find -H "$DOTFILES_ROOT/config" -type f -not -path '*/.git/*' | sort)
+}
+
+install_dotfiles
+install_config
+warn "All installed. Restart your shell."

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+run_installer() {
+	local installer="$1"
+	echo "[install] $installer"
+	bash "$installer"
+}
+
+# Find the installers and run them iteratively.
+find . -name install.sh \
+	-not -path './.git/*' \
+	-not -path './script/*' \
+	-not -path './install.sh' \
+	| sort \
+	| while IFS= read -r installer; do
+		run_installer "$installer"
+	done
