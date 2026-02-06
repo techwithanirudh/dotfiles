@@ -26,6 +26,10 @@ info() {
 	printf "\r  [ ${__DOTFILES_BLUE}..${__DOTFILES_RESET} ] %s\n" "$*"
 }
 
+warn() {
+	printf "\r  [${__DOTFILES_YELLOW}WARN${__DOTFILES_RESET}] %s\n" "$*"
+}
+
 user() {
 	printf "\r  [ ${__DOTFILES_YELLOW}??${__DOTFILES_RESET} ] %s\n" "$*"
 }

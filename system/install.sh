@@ -10,8 +10,8 @@ if ! has_cmd apt-get; then
 fi
 
 info "system: installing base packages"
-as_root apt-get update -y
-as_root DEBIAN_FRONTEND=noninteractive apt-get install -y \
+as_root env DEBIAN_FRONTEND=noninteractive apt-get update -y
+as_root env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 	ca-certificates \
 	curl \
 	file \

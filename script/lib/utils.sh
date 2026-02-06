@@ -136,7 +136,12 @@ download() {
 unzip_to() {
 	local zip_path="$1" dest="$2"
 	need_cmd unzip
-	rm -rf "$dest"
+
+	if [[ -z "${dest:-}" || "$dest" == "/" || "$dest" == "$HOME" || "$dest" == "~" || "$dest" == "." || "$dest" == ".." ]]; then
+		fail "unzip_to: refusing to delete unsafe dest: '$dest'"
+	fi
+
+	rm -rf -- "$dest"
 	mkdir -p "$dest"
 	unzip -o -q "$zip_path" -d "$dest"
 }

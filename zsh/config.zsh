@@ -15,9 +15,6 @@ setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
-
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 
@@ -36,7 +33,7 @@ fi
 # Keybinds
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
+bindkey '^[[5D' backward-word
+bindkey '^[[5C' forward-word
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
