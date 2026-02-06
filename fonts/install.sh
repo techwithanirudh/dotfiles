@@ -5,13 +5,13 @@ DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
-require_cmd fc-cache
+need_cmd fc-cache
 
 fonts_dir="$HOME/.local/share/fonts"
 font_family="JetBrainsMono Nerd Font"
 font_dest="$fonts_dir/JetBrainsMono-NerdFont"
 
-require_cmd fc-match grep
+need_cmds fc-match grep
 matched_family="$(fc-match -f '%{family}\n' "$font_family" 2>/dev/null || true)"
 if printf '%s' "$matched_family" | grep -qi -- "$font_family"; then
 	success "fonts: already installed; skipping"

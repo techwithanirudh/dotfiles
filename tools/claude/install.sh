@@ -5,9 +5,9 @@ DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
-require_cmd curl
+need_cmd curl
 
-if command -v claude >/dev/null 2>&1; then
+if has_cmd claude; then
 	success "claude already installed"
 	exit 0
 fi

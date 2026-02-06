@@ -5,10 +5,10 @@ DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
-require_cmd curl
+need_cmd curl
 
 # Install starship into ~/.local/bin (no sudo), if missing.
-if command -v starship >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/starship" ]]; then
+if has_cmd starship || [[ -x "$HOME/.local/bin/starship" ]]; then
 	success "starship already installed"
 	exit 0
 fi

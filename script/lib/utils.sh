@@ -4,11 +4,73 @@ set -euo pipefail
 # Shared utilities for dotfiles scripts.
 # Assumes script/lib/log.sh has already been sourced (info/success/fail).
 
-require_cmd() {
+has_cmd() { command -v "$1" >/dev/null 2>&1; }
+
+need_cmd() {
+	local mode="required"
+	local msg=""
+
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			--skip)
+				mode="skip"
+				msg="${2:-}"
+				shift 2
+				;;
+			--required)
+				mode="required"
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
+	local cmd="$1"
+	if [[ -z "${cmd:-}" ]]; then
+		fail "need_cmd: missing command name"
+	fi
+
+	if has_cmd "$cmd"; then
+		return 0
+	fi
+
+	if [[ "$mode" == "skip" ]]; then
+		info "${msg:-$cmd not found; skipping}"
+		exit 0
+	fi
+
+	fail "missing required command: $cmd"
+}
+
+need_cmds() {
+	local mode="required"
+	local msg=""
+
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			--skip)
+				mode="skip"
+				msg="${2:-}"
+				shift 2
+				;;
+			--required)
+				mode="required"
+				shift
+				;;
+			*)
+				break
+				;;
+		esac
+	done
+
 	local cmd
 	for cmd in "$@"; do
-		if ! command -v "$cmd" >/dev/null 2>&1; then
-			fail "missing required command: $cmd"
+		if [[ "$mode" == "skip" ]]; then
+			need_cmd --skip "$msg" "$cmd"
+		else
+			need_cmd "$cmd"
 		fi
 	done
 }
@@ -18,7 +80,7 @@ as_root() {
 		"$@"
 		return
 	fi
-	if command -v sudo >/dev/null 2>&1; then
+	if has_cmd sudo; then
 		sudo "$@"
 		return
 	fi
@@ -64,13 +126,13 @@ link_file() {
 
 download() {
 	local url="$1" out="$2"
-	require_cmd curl
+	need_cmd curl
 	curl -fsSL "$url" -o "$out"
 }
 
 unzip_to() {
 	local zip_path="$1" dest="$2"
-	require_cmd unzip
+	need_cmd unzip
 	rm -rf "$dest"
 	mkdir -p "$dest"
 	unzip -o -q "$zip_path" -d "$dest"
