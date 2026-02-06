@@ -7,7 +7,7 @@ source "$DOTFILES_ROOT/script/lib/index.sh"
 
 need_cmd curl
 
-if has_cmd claude; then
+if has_cmd claude || [[ -x "$HOME/.local/bin/claude" ]]; then
 	success "claude already installed"
 	exit 0
 fi

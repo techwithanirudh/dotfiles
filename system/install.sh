@@ -11,7 +11,7 @@ fi
 
 info "system: installing base packages"
 as_root apt-get update -y
-as_root apt-get install -y \
+as_root DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	ca-certificates \
 	curl \
 	file \
