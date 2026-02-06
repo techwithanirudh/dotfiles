@@ -50,7 +50,6 @@ link_targets=()
 link_targets+=("$HOME/.local/share/code-server/User/settings.json")
 link_targets+=("$HOME/.config/Code/User/settings.json")
 
-# macOS VS Code
 if [[ "$(uname -s)" == "Darwin" ]]; then
 	link_targets+=("$HOME/Library/Application Support/Code/User/settings.json")
 fi
