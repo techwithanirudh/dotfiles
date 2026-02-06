@@ -1,4 +1,4 @@
-# shell/path.zsh
+# zsh/path.zsh
 
 # Add user-level and dotfiles binaries to PATH.
 if [[ -d "$HOME/.local/bin" ]]; then

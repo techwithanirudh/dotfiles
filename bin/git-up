@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Usage:
+#   git up [git-pull-args]
+#   git reup [git-pull-args]
+#
+# Like `git pull` but shows a short log of what changed.
+
+pull_args=("$@")
+
+cmd_name="$(basename "$0")"
+if [[ "$cmd_name" == "git-reup" || "$cmd_name" == "reup" ]]; then
+	pull_args=(--rebase "${pull_args[@]}")
+fi
+
+git pull "${pull_args[@]}"
+
+# Diffstat when rebasing (git pull --rebase doesn't show it).
+if [[ "$cmd_name" == "git-reup" || "$cmd_name" == "reup" ]]; then
+	echo "Diff:"
+	git --no-pager diff --color --stat 'HEAD@{1}..' | sed 's/^/ /'
+fi
+
+echo "Log:"
+git log --color --pretty=oneline --abbrev-commit 'HEAD@{1}..' | sed 's/^/  /'
