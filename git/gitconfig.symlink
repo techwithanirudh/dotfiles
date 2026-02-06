@@ -129,10 +129,6 @@
 	changed = green
 	untracked = cyan
 
-[commit]
-	# Signing requires local GPG setup. Override in ~/.gitconfig.local if needed.
-	gpgsign = true
-
 [diff]
 	# Detect copies as well as renames.
 	renames = copies

@@ -17,9 +17,13 @@ as_root() {
 
 as_root apt-get update -y
 as_root apt-get install -y \
+	ca-certificates \
 	curl \
 	file \
 	git \
+	fontconfig \
 	procps \
+	rsync \
 	unzip \
-	zip
+	zip \
+	zsh
