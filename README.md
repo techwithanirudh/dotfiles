@@ -32,7 +32,3 @@ Environment knobs:
 - https://github.com/holman/dotfiles
 - https://github.com/jessfraz/dotfiles
 - https://github.com/jarrodwatts/claude-code-config
-
-## Bin Scripts
-
-This repo includes a few `bin/git-*` helpers (Holman-style). With `bin/` on your PATH (via `zsh/path.zsh`), you can run them as git subcommands.
