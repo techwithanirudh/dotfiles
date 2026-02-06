@@ -89,6 +89,12 @@ as_root() {
 
 backup_path() {
 	local dst="$1"
+	local first
+	first="${dst}.backup"
+	if [[ ! -e "$first" && ! -L "$first" ]]; then
+		printf '%s' "$first"
+		return 0
+	fi
 	local ts
 	ts="$(date +%Y%m%d%H%M%S)"
 	printf '%s.backup.%s' "$dst" "$ts"
