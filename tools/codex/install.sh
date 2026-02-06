@@ -15,5 +15,5 @@ if ! command -v npm >/dev/null 2>&1; then
 	exit 0
 fi
 
-info "installing codex via npm"
+info "installing codex"
 npm i -g @openai/codex
