@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Wrapper for git-up that runs `git pull --rebase ...`.
-exec "$(dirname "$0")/git-up" "$@"
