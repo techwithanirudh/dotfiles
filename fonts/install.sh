@@ -40,23 +40,11 @@ install_zip() {
 	unzip -o -q "$zip_path" -d "$dest"
 }
 
-# Regular JetBrains Mono (not Nerd patched).
-install_zip \
-	"https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip" \
-	"JetBrainsMono" \
-	"$fonts_dir/JetBrainsMono"
-
 # Nerd Fonts patched JetBrains Mono (for Starship glyphs).
 install_zip \
 	"https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip" \
 	"JetBrainsMono-NerdFont" \
 	"$fonts_dir/JetBrainsMono-NerdFont"
-
-# Symbols only Nerd Font (covers lots of prompt glyphs).
-install_zip \
-	"https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip" \
-	"NerdFontsSymbolsOnly" \
-	"$fonts_dir/NerdFontsSymbolsOnly"
 
 if command -v fc-cache >/dev/null 2>&1; then
 	echo "[fonts] refreshing font cache"
@@ -64,4 +52,3 @@ if command -v fc-cache >/dev/null 2>&1; then
 fi
 
 echo "[fonts] done"
-
