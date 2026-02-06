@@ -1,0 +1,10 @@
+# ~/.localrc
+#
+# This file is intentionally not committed.
+# Put machine-specific environment variables and overrides here.
+#
+# Examples:
+# export GIT_AUTHOR_NAME="Your Name"
+# export GIT_AUTHOR_EMAIL="you@example.com"
+# export OPENAI_API_KEY="..."
+# export ANTHROPIC_API_KEY="..."
