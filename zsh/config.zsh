@@ -24,7 +24,6 @@ setopt HIST_REDUCE_BLANKS
 # Don't expand aliases before completion has finished.
 setopt complete_aliases
 
-# Colors for BSD/macOS ls (harmless on Linux).
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 

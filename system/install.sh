@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "$(uname -s)" != "Linux" ]]; then
+	echo "[system] Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
+	exit 1
+fi
+
+if ! command -v apt-get >/dev/null 2>&1; then
+	echo "[system] apt-get not found; this installer expects Debian/Ubuntu." >&2
+	exit 1
+fi
+
 # Base packages these dotfiles assume exist.
 as_root() {
 	if [[ "$(id -u)" == "0" ]]; then

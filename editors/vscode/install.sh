@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "$(uname -s)" != "Linux" ]]; then
+	echo "[vscode] Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
+	exit 1
+fi
+
 DOTFILES_ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"
 
 backup_path() {
@@ -49,10 +54,6 @@ fi
 link_targets=()
 link_targets+=("$HOME/.local/share/code-server/User/settings.json")
 link_targets+=("$HOME/.config/Code/User/settings.json")
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-	link_targets+=("$HOME/Library/Application Support/Code/User/settings.json")
-fi
 
 for dst in "${link_targets[@]}"; do
 	link_file "$src" "$dst"

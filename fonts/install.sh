@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "$(uname -s)" != "Linux" ]]; then
+	echo "[fonts] Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
+	exit 1
+fi
+
 need_cmd() {
 	if ! command -v "$1" >/dev/null 2>&1; then
 		echo "missing required command: $1" >&2

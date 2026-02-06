@@ -1,7 +1,5 @@
 # dotfiles
 
-Holman-style topic dotfiles.
-
 ## Install
 
 ```bash
