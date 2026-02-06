@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Installs fonts into ~/.local/share/fonts. Note:
-# - For VS Code/Cursor on your laptop, the font must be installed on your laptop too.
-# - This helps for local Linux shells or any environment that actually uses server-side fonts.
-
 need_cmd() {
 	if ! command -v "$1" >/dev/null 2>&1; then
 		echo "missing required command: $1" >&2
@@ -40,7 +36,6 @@ install_zip() {
 	unzip -o -q "$zip_path" -d "$dest"
 }
 
-# Nerd Fonts patched JetBrains Mono (for Starship glyphs).
 install_zip \
 	"https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip" \
 	"JetBrainsMono-NerdFont" \
