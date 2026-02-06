@@ -8,9 +8,9 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 run_installer() {
 	local installer="$1"
-	info "installing $(basename "$(dirname "$installer")")/$(basename "$installer")"
+	info "running $(basename "$(dirname "$installer")")/$(basename "$installer")"
 	if bash "$installer"; then
-		success "installed $installer"
+		success "done $installer"
 	else
 		fail "installer failed: $installer"
 	fi
