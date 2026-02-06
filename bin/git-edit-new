@@ -2,7 +2,6 @@
 set -euo pipefail
 
 # Open new, unstaged files in your editor.
-# Uses $EDITOR if set, otherwise falls back to nvim/vim/vi.
 
 editor="${EDITOR:-}"
 if [[ -z "$editor" ]]; then
