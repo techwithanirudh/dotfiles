@@ -26,10 +26,7 @@ Environment knobs:
 - `shell/`: PATH, exports, prompt, terminal title hooks
 - `git/`: git + hub aliases
 - `ai/`: CLI aliases
-- `starship/`: prompt install
-- `claude/`: claude install
-- `codex/`: codex install
-- `opencode/`: opencode install
+- `tools/`: CLI installs (starship, claude, codex, opencode)
 - `editors/vscode/`: VS Code and code-server settings linking
 
 ## Tool Config
