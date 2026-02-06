@@ -26,7 +26,6 @@ Environment knobs:
 - `tools/`: CLI installs (starship, claude, codex, opencode)
 - `system/`: apt packages
 - `editors/vscode/`: VS Code and code-server settings linking
-- `fonts/`: font install (JetBrainsMono Nerd Font)
 
 ## Inspiration
 - https://github.com/holman/dotfiles
