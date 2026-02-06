@@ -4,48 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT="$(pwd -P)"
 
-source "$DOTFILES_ROOT/script/lib/log.sh"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/index.sh"
 
-backup_path() {
-	local dst="$1"
-	local base="${dst}.backup"
-
-	if [[ ! -e "$base" && ! -L "$base" ]]; then
-		printf '%s' "$base"
-		return
-	fi
-
-	printf '%s.%s' "$base" "$(date +%Y%m%d%H%M%S)"
-}
-
-link_file() {
-	local src="$1" dst="$2"
-
-	if [[ -L "$dst" ]]; then
-		local current
-		current="$(readlink "$dst" || true)"
-		if [[ "$current" == "$src" ]]; then
-			success "skipped $src"
-			return
-		fi
-	fi
-
-	if [[ -e "$dst" || -L "$dst" ]]; then
-		local backup
-		backup="$(backup_path "$dst")"
-		if mv "$dst" "$backup"; then
-			success "moved $dst to $backup"
-		else
-			fail "could not move $dst to $backup"
-		fi
-	fi
-
-	if ln -s "$src" "$dst"; then
-		success "linked $src to $dst"
-	else
-		fail "could not link $src to $dst"
-	fi
-}
+printf "\n"
 
 install_dotfiles() {
 	info "installing dotfiles"

@@ -3,9 +3,7 @@ set -euo pipefail
 
 DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
 # shellcheck source=/dev/null
-source "$DOTFILES_ROOT/script/lib/log.sh"
-# shellcheck source=/dev/null
-source "$DOTFILES_ROOT/script/lib/utils.sh"
+source "$DOTFILES_ROOT/script/lib/index.sh"
 
 if command -v codex >/dev/null 2>&1; then
 	success "codex already installed"

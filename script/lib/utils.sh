@@ -25,6 +25,43 @@ as_root() {
 	fail "need root to run: $*"
 }
 
+backup_path() {
+	local dst="$1"
+	local ts
+	ts="$(date +%Y%m%d%H%M%S)"
+	printf '%s.backup.%s' "$dst" "$ts"
+}
+
+link_file() {
+	local src="$1" dst="$2"
+
+	if [[ -L "$dst" ]]; then
+		local current
+		current="$(readlink "$dst" || true)"
+		if [[ "$current" == "$src" ]]; then
+			success "already linked $dst"
+			return
+		fi
+	fi
+
+	if [[ -e "$dst" || -L "$dst" ]]; then
+		if [[ "${DOTFILES_FORCE:-}" == "1" ]]; then
+			rm -rf "$dst"
+			success "removed $dst"
+		else
+			local backup
+			backup="$(backup_path "$dst")"
+			mkdir -p "$(dirname "$backup")"
+			mv "$dst" "$backup"
+			success "moved $dst to $backup"
+		fi
+	fi
+
+	mkdir -p "$(dirname "$dst")"
+	ln -s "$src" "$dst"
+	success "linked $dst"
+}
+
 download() {
 	local url="$1" out="$2"
 	require_cmd curl
