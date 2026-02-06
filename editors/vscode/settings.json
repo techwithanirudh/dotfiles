@@ -43,17 +43,23 @@
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.fontFamily": "JetBrains Mono, Comic Sans MS",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.suggest.enabled": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh"
+    }
+  },
 
   // Editor
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "chat.editor.fontSize": 14,
   "editor.lineHeight": 1.6,
-  "editor.fontFamily": "JetBrains Mono, Comic Sans MS",
+  "editor.fontFamily": "JetBrainsMono Nerd Font, JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "editor.minimap.enabled": false,
   "editor.wordWrap": "on",
   "editor.cursorStyle": "line",
@@ -75,7 +81,7 @@
   // UI Styles
   "custom-ui-style.reloadWithoutPrompting": true,
 
-  "custom-ui-style.font.monospace": "JetBrains Mono, Comic Sans MS",
+  "custom-ui-style.font.monospace": "JetBrainsMono Nerd Font, JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "custom-ui-style.font.sansSerif": "JetBrains Mono, -apple-system",
 
   "custom-ui-style.electron": {

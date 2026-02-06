@@ -1,0 +1,32 @@
+# zshrc.symlink
+
+# Compute dotfiles root from the absolute, resolved path of this file.
+# ~/.zshrc is symlinked to .../dotfiles/zsh/zshrc.symlink.
+if [[ -z "${DOTFILES:-}" ]]; then
+	zshrc_real="${${(%):-%N}:A}"
+	export DOTFILES="${zshrc_real:h:h}"
+	unset zshrc_real
+fi
+
+# Holman-style: load all `*.zsh` topic files under the dotfiles root.
+export ZSH="$DOTFILES"
+
+typeset -U config_files
+config_files=($ZSH/**/*.zsh(N))
+
+# Load all path files first.
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
+done
+
+# Load everything but path and completion files.
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source "$file"
+done
+
+# Load every completion file last.
+for file in ${(M)config_files:#*/completion.zsh}; do
+  source "$file"
+done
+
+unset config_files

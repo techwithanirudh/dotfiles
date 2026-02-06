@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+DOTFILES_ROOT="$(pwd -P)"
+
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/index.sh"
+
+printf "\n"
+
+install_dotfiles() {
+	info "installing dotfiles"
+
+	while IFS= read -r src; do
+		local base dst
+		base="$(basename "${src%.*}")"
+		dst="$HOME/.${base}"
+		link_file "$src" "$dst"
+	done < <(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*/.git/*' | sort)
+}
+
+install_config() {
+	if [[ ! -d "$DOTFILES_ROOT/config" ]]; then
+		return
+	fi
+
+	info "installing config"
+	mkdir -p "$HOME/.config"
+
+	while IFS= read -r src; do
+		local rel dst_dir dst
+		rel="${src#"$DOTFILES_ROOT/config/"}"
+		dst_dir="$HOME/.config/$(dirname "$rel")"
+		dst="$HOME/.config/$rel"
+		mkdir -p "$dst_dir"
+		link_file "$src" "$dst"
+	done < <(find -H "$DOTFILES_ROOT/config" -type f -not -path '*/.git/*' | sort)
+}
+
+install_dotfiles
+install_config
+success "bootstrap complete"

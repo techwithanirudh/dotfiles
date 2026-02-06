@@ -1,46 +1,38 @@
 # dotfiles
 
-**Table of Contents**
+## Install
 
-- [About](#about)
-- [Installing](#installing)
-- [Customizing](#customizing)
-- [Resources](#resources)
-
-## About
-
-This repo contains my dotfiles and setup scripts, inspired by the dotfiles community.
-
-## Installing
-
-Symlink or copy the files you want into your home directory.
-
-## Customizing
-
-Setup script support
-You can set up your dotfiles by creating one of the following script files in your dotfiles repo:
-
-- install.sh
-- install
-- bootstrap.sh
-- bootstrap
-- script/bootstrap
-- setup.sh
-- setup
-- script/setup
-
-If any of the above files are found (in the specified order), Coder will try to execute the first match. After the first match is found, other files will be ignored.
-
-The setup script must be executable, otherwise the dotfiles setup will fail. If you encounter this issue, you can fix it by making the script executable using the following commands:
-
-```console
-$ cd <path_to_dotfiles_repo>
-$ chmod +x <script_name>
-$ git commit -m "Make <script_name> executable" <script_name>
-$ git push
+```bash
+./install.sh
 ```
 
-## Resources
+Environment knobs:
 
-- https://github.com/jessfraz/dotfiles/tree/main
+- `DOTFILES_SKIP_INSTALL=1`: only link files (skip installers).
+
+## Layout
+
+- `*/**/*.symlink`: symlinked into `$HOME` as dotfiles by `script/bootstrap`.
+- `zsh/zshrc.symlink`: the main entrypoint, symlinked to `~/.zshrc`.
+- `*/**/*.zsh`: sourced automatically by `~/.zshrc` (topic configs).
+- `config/*`: symlinked into `~/.config/*` by `script/bootstrap`.
+- `*/install.sh`: executed by `script/install` (tool installs, editor config linking, etc.).
+
+## Topics
+
+- `zsh/`: PATH, exports, prompt, completion, terminal title hooks
+- `git/`: git + hub aliases
+- `ai/`: CLI aliases
+- `tools/`: CLI installs (starship, claude, codex, opencode)
+- `system/`: apt packages
+- `editors/vscode/`: VS Code and code-server settings linking
+- `fonts/`: font install (JetBrainsMono Nerd Font)
+
+## Inspiration
+- https://github.com/holman/dotfiles
+- https://github.com/jessfraz/dotfiles
 - https://github.com/jarrodwatts/claude-code-config
+
+## Bin Scripts
+
+This repo includes a few `bin/git-*` helpers (Holman-style). With `bin/` on your PATH (via `zsh/path.zsh`), you can run them as git subcommands.

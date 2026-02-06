@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+DOTFILES_ROOT="$(pwd -P)"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/index.sh"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+run_installer() {
+	local installer="$1"
+	info "running $(basename "$(dirname "$installer")")/$(basename "$installer")"
+	if bash "$installer"; then
+		success "done $installer"
+	else
+		fail "installer failed: $installer"
+	fi
+}
+
+if [[ -x "./system/install.sh" ]]; then
+	run_installer "./system/install.sh"
+fi
+
+find . -name install.sh \
+	-not -path './.git/*' \
+	-not -path './.devcontainer/*' \
+	-not -path './script/*' \
+	-not -path './install.sh' \
+	-not -path './system/install.sh' \
+	| sort \
+	| while IFS= read -r installer; do
+		run_installer "$installer"
+	done

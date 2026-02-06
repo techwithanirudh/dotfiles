@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+if [[ -z "$branch" ]]; then
+	echo "not in a git repo" >&2
+	exit 1
+fi
+
+printf '%s\n' "$branch"
+
+copy() {
+	if command -v wl-copy >/dev/null 2>&1; then
+		printf '%s' "$branch" | wl-copy
+		return 0
+	fi
+	if command -v xclip >/dev/null 2>&1; then
+		printf '%s' "$branch" | xclip -selection clipboard
+		return 0
+	fi
+	if command -v xsel >/dev/null 2>&1; then
+		printf '%s' "$branch" | xsel --clipboard --input
+		return 0
+	fi
+	if command -v pbcopy >/dev/null 2>&1; then
+		printf '%s' "$branch" | pbcopy
+		return 0
+	fi
+	return 1
+}
+
+if copy; then
+	echo "(copied to clipboard)"
+else
+	echo "(no clipboard tool found; install wl-clipboard or xclip)"
+fi
