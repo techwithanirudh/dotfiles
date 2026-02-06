@@ -9,11 +9,20 @@ run_installer() {
 	bash "$installer"
 }
 
-# Find the installers and run them iteratively.
+if [[ -x "./system/install.sh" ]]; then
+	run_installer "./system/install.sh"
+fi
+
+if [[ -x "./brew/install.sh" ]]; then
+	run_installer "./brew/install.sh"
+fi
+
 find . -name install.sh \
 	-not -path './.git/*' \
 	-not -path './script/*' \
 	-not -path './install.sh' \
+	-not -path './system/install.sh' \
+	-not -path './brew/install.sh' \
 	| sort \
 	| while IFS= read -r installer; do
 		run_installer "$installer"
