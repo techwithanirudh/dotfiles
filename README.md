@@ -27,8 +27,10 @@ Environment knobs:
 - `git/`: git + hub aliases
 - `ai/`: CLI aliases
 - `tools/`: CLI installs (starship, claude, codex, opencode)
+- `system/`: apt packages
 - `editors/vscode/`: VS Code and code-server settings linking
 
-## Tool Config
-
-- OpenCode global config is provided at `config/opencode/opencode.json` (linked to `~/.config/opencode/opencode.json` by `script/bootstrap`).
+## Inspiration
+- https://github.com/holman/dotfiles
+- https://github.com/jessfraz/dotfiles
+- https://github.com/jarrodwatts/claude-code-config

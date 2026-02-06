@@ -1,4 +1,4 @@
-# shell/ghostty-title.zsh
+# shell/ghostty.zsh
 
 autoload -Uz add-zsh-hook
 
