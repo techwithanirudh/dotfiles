@@ -12,8 +12,7 @@ if command -v starship >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/starship" ]]; 
 fi
 
 if ! command -v curl >/dev/null 2>&1; then
-	echo "curl not found. Run system/install.sh first." >&2
-	exit 1
+	fail "curl not found. Run system/install.sh first."
 fi
 
 mkdir -p "$HOME/.local/bin"

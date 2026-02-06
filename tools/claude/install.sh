@@ -11,8 +11,7 @@ if command -v claude >/dev/null 2>&1; then
 fi
 
 if ! command -v curl >/dev/null 2>&1; then
-	echo "curl not found. Run system/install.sh first." >&2
-	exit 1
+	fail "curl not found. Run system/install.sh first."
 fi
 
 info "installing claude"

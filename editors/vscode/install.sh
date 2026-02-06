@@ -2,6 +2,8 @@
 set -euo pipefail
 
 DOTFILES_ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/log.sh"
 
 backup_path() {
 	local dst="$1"
@@ -17,7 +19,7 @@ link_file() {
 		local current
 		current="$(readlink "$dst" || true)"
 		if [[ "$current" == "$src" ]]; then
-			echo "[OK] already linked $dst"
+			success "already linked $dst"
 			return
 		fi
 	fi
@@ -25,24 +27,24 @@ link_file() {
 	if [[ -e "$dst" || -L "$dst" ]]; then
 		if [[ "${DOTFILES_FORCE:-}" == "1" ]]; then
 			rm -rf "$dst"
-			echo "[OK] removed $dst"
+			success "removed $dst"
 		else
 			local backup
 			backup="$(backup_path "$dst")"
 			mkdir -p "$(dirname "$backup")"
 			mv "$dst" "$backup"
-			echo "[OK] moved $dst to $backup"
+			success "moved $dst to $backup"
 		fi
 	fi
 
 	mkdir -p "$(dirname "$dst")"
 	ln -s "$src" "$dst"
-	echo "[OK] linked $dst"
+	success "linked $dst"
 }
 
 src="$DOTFILES_ROOT/editors/vscode/settings.json"
 if [[ ! -f "$src" ]]; then
-	echo "[WARN] $src missing; skipping"
+	info "$src missing; skipping"
 	exit 0
 fi
 

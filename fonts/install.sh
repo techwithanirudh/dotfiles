@@ -7,8 +7,7 @@ source "$DOTFILES_ROOT/script/lib/log.sh"
 
 need_cmd() {
 	if ! command -v "$1" >/dev/null 2>&1; then
-		echo "missing required command: $1" >&2
-		exit 1
+		fail "missing required command: $1"
 	fi
 }
 
