@@ -12,14 +12,13 @@ fi
 
 need_cmd --skip "npm not found; skipping codex install" npm
 
-# Ensure npm global installs go to a user-writable prefix so we don't need
-# sudo. The dotfiles bootstrap links ~/.npmrc with prefix=~/.local, but if
-# that hasn't happened yet, set it for this session.
-npm_prefix="$(npm config get prefix 2>/dev/null || echo "")"
-if [[ -n "$npm_prefix" && ! -w "$npm_prefix/lib" ]]; then
-	info "npm global prefix ($npm_prefix) is not writable; using ~/.local"
-	export npm_config_prefix="$HOME/.local"
-fi
-
 info "installing codex"
-npm i -g @openai/codex
+if npm i -g @openai/codex 2>/dev/null; then
+	success "codex installed"
+else
+	info "global install failed (permissions); falling back to ~/.npm-global"
+	mkdir -p "$HOME/.npm-global"
+	npm config set prefix "$HOME/.npm-global"
+	npm i -g @openai/codex
+	success "codex installed to ~/.npm-global"
+fi
