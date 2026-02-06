@@ -23,6 +23,7 @@ fi
 
 find . -name install.sh \
 	-not -path './.git/*' \
+	-not -path './.devcontainer/*' \
 	-not -path './script/*' \
 	-not -path './install.sh' \
 	-not -path './system/install.sh' \

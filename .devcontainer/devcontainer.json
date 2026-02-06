@@ -8,10 +8,10 @@
       "username": "coder",
       "userUid": "1000",
       "userGid": "1000",
-      "installZsh": "true",
-      "configureZshAsDefaultShell": "true",
-      "installOhMyZsh": "false",
-      "installOhMyZshConfig": "false"
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": false,
+      "installOhMyZshConfig": false
     },
     "ghcr.io/devcontainers/features/git:1": {
       "version": "os-provided"
