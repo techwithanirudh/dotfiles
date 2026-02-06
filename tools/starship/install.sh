@@ -8,8 +8,8 @@ if command -v starship >/dev/null 2>&1; then
 fi
 
 if ! command -v curl >/dev/null 2>&1; then
-	echo "curl not found; skipping starship install"
-	exit 0
+	echo "curl not found. Run system/install.sh first." >&2
+	exit 1
 fi
 
 mkdir -p "$HOME/.local/bin"

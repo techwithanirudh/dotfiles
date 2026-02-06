@@ -1,0 +1,20 @@
+# ~/.gitconfig (symlinked)
+
+[init]
+	defaultBranch = main
+
+[fetch]
+	prune = true
+
+[pull]
+	rebase = false
+
+[rerere]
+	enabled = true
+
+[color]
+	ui = auto
+
+[include]
+	# Put machine- or identity-specific settings here (name/email, signing, etc.).
+	path = ~/.gitconfig.local

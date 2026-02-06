@@ -23,7 +23,7 @@ Environment knobs:
 
 ## Topics
 
-- `shell/`: PATH, exports, prompt, terminal title hooks
+- `zsh/`: PATH, exports, prompt, completion, terminal title hooks
 - `git/`: git + hub aliases
 - `ai/`: CLI aliases
 - `tools/`: CLI installs (starship, claude, codex, opencode)

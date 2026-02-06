@@ -13,10 +13,8 @@ alias gp='git push origin HEAD'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gco='git checkout'
-alias gcb='git copy-branch-name'
 alias gb='git branch'
 alias gs='git status -sb'
-alias ge='git-edit-new'
 
 # Commit all with message: gac "message"
 gac() {
