@@ -1,0 +1,4 @@
+- Add Agent Skills, and proper AI Config
+- Add Commit Lint + Shell Formatting + Lint
+- Both CI / CD and Local Formatting
+- Update all devcontainers to the current devcontainer file. Run tests on both envbuilder and DiD to see if the dotfiles apply properly
