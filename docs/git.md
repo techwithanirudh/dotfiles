@@ -15,7 +15,6 @@ Use it for per-machine identity, signing keys, and anything you don't want to co
 
 Holman-style git helpers are in `bin/` and are available as git subcommands:
 
-- `git up`
 - `git amend`, `git undo`
 - `git copy-branch-name`, `git edit-new`
 

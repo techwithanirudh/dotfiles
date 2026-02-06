@@ -35,4 +35,4 @@ Environment knobs:
 
 ## Bin Scripts
 
-This repo includes a few `bin/git-*` helpers (Holman-style). With `bin/` on your PATH (via `zsh/path.zsh`), you can run them as `git up`, etc.
+This repo includes a few `bin/git-*` helpers (Holman-style). With `bin/` on your PATH (via `zsh/path.zsh`), you can run them as git subcommands.
