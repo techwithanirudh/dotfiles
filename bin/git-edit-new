@@ -6,8 +6,8 @@ set -euo pipefail
 
 editor="${EDITOR:-}"
 if [[ -z "$editor" ]]; then
-	if command -v nvim >/dev/null 2>&1; then
-		editor="nvim"
+	if command -v nano >/dev/null 2>&1; then
+		editor="nano"
 	elif command -v vim >/dev/null 2>&1; then
 		editor="vim"
 	else
