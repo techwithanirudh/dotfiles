@@ -81,4 +81,4 @@ install_config() {
 install_dotfiles
 install_config
 printf "\n"
-success "All installed!"
+success "bootstrap complete"
