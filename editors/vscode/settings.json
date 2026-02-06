@@ -47,6 +47,12 @@
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.suggest.enabled": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh"
+    }
+  },
 
   // Editor
   "editor.fontLigatures": true,
