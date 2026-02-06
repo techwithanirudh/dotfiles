@@ -6,7 +6,7 @@ DOTFILES_ROOT="$(pwd -P)"
 
 source "$DOTFILES_ROOT/script/lib/log.sh"
 
-echo ""
+printf "\n"
 
 backup_path() {
 	local dst="$1"
@@ -80,5 +80,5 @@ install_config() {
 
 install_dotfiles
 install_config
-echo ""
-echo "  All installed!"
+printf "\n"
+success "All installed!"
