@@ -81,7 +81,7 @@
   // UI Styles
   "custom-ui-style.reloadWithoutPrompting": true,
 
-  "custom-ui-style.font.monospace": "JetBrains Mono, Comic Sans MS",
+  "custom-ui-style.font.monospace": "JetBrainsMono Nerd Font, JetBrainsMono Nerd Font Mono, JetBrains Mono, monospace",
   "custom-ui-style.font.sansSerif": "JetBrains Mono, -apple-system",
 
   "custom-ui-style.electron": {

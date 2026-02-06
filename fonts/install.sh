@@ -18,14 +18,13 @@ if printf '%s' "$matched_family" | grep -qi -- "$font_family"; then
 	exit 0
 fi
 
+cleanup() {
+	rm -rf "${tmp_dir:-}"
+}
 tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/dotfiles-fonts.XXXXXXXX")"
+trap cleanup EXIT
 
 mkdir -p "$fonts_dir"
-
-cleanup() {
-	rm -rf "$tmp_dir"
-}
-trap cleanup EXIT
 
 info "fonts: downloading JetBrainsMono Nerd Font"
 zip_path="$tmp_dir/JetBrainsMono.zip"

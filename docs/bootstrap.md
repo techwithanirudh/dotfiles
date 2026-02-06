@@ -10,11 +10,11 @@
 
 ## Backups
 
-If `~/.zshrc` already exists, bootstrap moves it to a backup name and then links the repo version.
+If a destination already exists (e.g., `~/.zshrc`), bootstrap moves it to a backup name and then links the repo version. This applies to every symlink target, not just `~/.zshrc`.
 
 Backup naming:
 
-- first backup: `~/.zshrc.backup`
-- if that exists: `~/.zshrc.backup.<timestamp>`
+- first backup: `<destination>.backup`
+- if that exists: `<destination>.backup.<timestamp>`
 
 This is intentionally non-interactive: it always preserves the old file before linking.

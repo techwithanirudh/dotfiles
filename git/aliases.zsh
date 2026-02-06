@@ -1,11 +1,3 @@
-# Use hub as git wrapper if installed.
-if (( $+commands[hub] )); then
-	hub_path="$(command -v hub 2>/dev/null)"
-	if [[ -n "$hub_path" ]]; then
-		alias git="$hub_path"
-	fi
-fi
-
 alias gl='git pull --prune'
 alias gp='git push origin HEAD'
 alias gc='git commit'
