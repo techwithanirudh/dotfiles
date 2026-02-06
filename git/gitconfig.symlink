@@ -15,6 +15,9 @@
 [color]
 	ui = auto
 
+[core]
+	excludesfile = ~/.gitignore
+
 [include]
 	# Put machine- or identity-specific settings here (name/email, signing, etc.).
 	path = ~/.gitconfig.local

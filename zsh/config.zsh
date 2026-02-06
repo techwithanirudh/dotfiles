@@ -31,9 +31,9 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
 # Add custom function path if present.
-if [[ -n "${DOTFILES:-}" && -d "$DOTFILES/functions" ]]; then
-	fpath=($DOTFILES/functions $fpath)
-	autoload -U $DOTFILES/functions/*(:t)
+if [[ -n "${ZSH:-}" && -d "$ZSH/functions" ]]; then
+	fpath=($ZSH/functions $fpath)
+	autoload -U $ZSH/functions/*(:t)
 fi
 
 # Keybinds

@@ -11,10 +11,10 @@ This repo is a Holman-style, zsh-first dotfiles layout.
 ## Zsh Loading Model
 
 - `~/.zshrc` is symlinked to `zsh/zshrc.symlink`.
-- `zsh/zshrc.symlink` loads topic files from `$DOTFILES/*`:
-  - `path.zsh` first (PATH setup)
-  - `*.zsh` next (topic configuration)
-  - `completion.zsh` last (completion init)
+- `zsh/zshrc.symlink` loads all `*.zsh` files under the dotfiles root (Holman-style):
+- `path.zsh` first
+- everything else next
+- `completion.zsh` last
 
 ## Conventions
 

@@ -8,26 +8,25 @@ if [[ -z "${DOTFILES:-}" ]]; then
 	unset zshrc_real
 fi
 
-# Load all topic configs.
-# - path.zsh first
-# - completion.zsh last
-# - everything else in between
-for topic in "$DOTFILES"/*; do
-	[[ -d "$topic" ]] || continue
-	[[ -f "$topic/path.zsh" ]] && source "$topic/path.zsh"
+# Holman-style: load all `*.zsh` topic files under the dotfiles root.
+export ZSH="$DOTFILES"
+
+typeset -U config_files
+config_files=($ZSH/**/*.zsh(N))
+
+# Load all path files first.
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
 done
 
-for topic in "$DOTFILES"/*; do
-	[[ -d "$topic" ]] || continue
-	for file in "$topic"/*.zsh; do
-		[[ -f "$file" ]] || continue
-		[[ "$file" == */path.zsh ]] && continue
-		[[ "$file" == */completion.zsh ]] && continue
-		source "$file"
-	done
+# Load everything but path and completion files.
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source "$file"
 done
 
-for topic in "$DOTFILES"/*; do
-	[[ -d "$topic" ]] || continue
-	[[ -f "$topic/completion.zsh" ]] && source "$topic/completion.zsh"
+# Load every completion file last.
+for file in ${(M)config_files:#*/completion.zsh}; do
+  source "$file"
 done
+
+unset config_files

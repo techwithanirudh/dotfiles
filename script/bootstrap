@@ -4,9 +4,19 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT="$(pwd -P)"
 
-info() { printf "[..] %s\n" "$*"; }
-ok() { printf "[OK] %s\n" "$*"; }
-warn() { printf "[WARN] %s\n" "$*"; }
+echo ""
+
+info() {
+	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$*"
+}
+
+success() {
+	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$*"
+}
+
+warn() {
+	printf "\r  [\033[0;33m!!\033[0m ] %s\n" "$*"
+}
 
 backup_path() {
 	local dst="$1"
@@ -22,7 +32,7 @@ link_file() {
 		local current
 		current="$(readlink "$dst" || true)"
 		if [[ "$current" == "$src" ]]; then
-			ok "already linked $dst"
+			success "already linked $dst"
 			return
 		fi
 	fi
@@ -30,17 +40,17 @@ link_file() {
 	if [[ -e "$dst" || -L "$dst" ]]; then
 		if [[ "${DOTFILES_FORCE:-}" == "1" ]]; then
 			rm -rf "$dst"
-			ok "removed $dst"
+			success "removed $dst"
 		else
 			local backup
 			backup="$(backup_path "$dst")"
 			mv "$dst" "$backup"
-			ok "moved $dst to $backup"
+			success "moved $dst to $backup"
 		fi
 	fi
 
 	ln -s "$src" "$dst"
-	ok "linked $dst"
+	success "linked $dst"
 }
 
 install_dotfiles() {
@@ -74,4 +84,5 @@ install_config() {
 
 install_dotfiles
 install_config
+echo ""
 warn "All installed. Restart your shell."
