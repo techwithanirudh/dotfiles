@@ -182,9 +182,3 @@
 [include]
 	# Put machine- or identity-specific settings here (name/email, signing, etc.).
 	path = ~/.gitconfig.local
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
