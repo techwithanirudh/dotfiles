@@ -17,11 +17,13 @@ need_cmd unzip
 fonts_dir="$HOME/.local/share/fonts"
 font_dest="$fonts_dir/JetBrainsMono-NerdFont"
 
-if [[ -d "$font_dest" ]]; then
-	if find "$font_dest" -maxdepth 1 -type f \( -name '*.ttf' -o -name '*.otf' \) -print -quit | grep -q .; then
-		success "fonts: already installed; skipping"
-		exit 0
-	fi
+if ! command -v fc-match >/dev/null 2>&1; then
+	fail "fc-match not found (fontconfig). Install it via system/install.sh."
+fi
+
+if fc-match -s "JetBrainsMono Nerd Font" >/dev/null 2>&1; then
+	success "fonts: already installed; skipping"
+	exit 0
 fi
 
 tmp_dir="${TMPDIR:-/tmp}/dotfiles-fonts.$$"
