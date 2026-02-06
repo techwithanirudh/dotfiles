@@ -61,19 +61,19 @@
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
 	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+	retag = "!r() { git tag -d \"$1\" && git push origin \":refs/tags/$1\" && git tag \"$1\"; }; r"
 
 	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
+	fb = "!f() { git branch -a --contains \"$1\"; }; f"
 
 	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
+	ft = "!f() { git describe --always --contains \"$1\"; }; f"
 
 	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S\"$1\"; }; f"
 
 	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=\"$1\"; }; f"
 
 	# List contributors with number of commits.
 	contributors = shortlog --summary --numbered
@@ -143,7 +143,7 @@
 
 [help]
 	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+	autocorrect = 10
 
 [init]
 	defaultBranch = main

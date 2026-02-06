@@ -13,4 +13,23 @@ if has_cmd opencode || [[ -x "$HOME/.local/bin/opencode" ]]; then
 fi
 
 info "installing opencode"
-curl -fsSL https://opencode.ai/install | bash
+tmp="$(mktemp "${TMPDIR:-/tmp}/dotfiles-opencode.XXXXXXXX")"
+cleanup() { rm -f "$tmp"; }
+trap cleanup EXIT
+
+info "downloading opencode installer"
+curl -fsSL https://opencode.ai/install -o "$tmp"
+
+if [[ -n "${OPENCODE_INSTALL_SHA256:-}" ]]; then
+	need_cmd sha256sum
+	got="$(sha256sum "$tmp" | awk '{print $1}')"
+	if [[ "$got" != "$OPENCODE_INSTALL_SHA256" ]]; then
+		fail "opencode installer sha256 mismatch: got $got"
+	fi
+	info "opencode installer checksum verified"
+else
+	warn "OPENCODE_INSTALL_SHA256 not set; running installer without checksum verification"
+fi
+
+bash "$tmp"
+success "opencode installed"

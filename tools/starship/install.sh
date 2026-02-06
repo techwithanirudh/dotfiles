@@ -16,4 +16,8 @@ fi
 mkdir -p "$HOME/.local/bin"
 
 info "installing starship"
-curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
+if curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"; then
+	success "starship installed"
+else
+	fail "starship installer failed"
+fi

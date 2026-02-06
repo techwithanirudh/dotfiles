@@ -7,13 +7,11 @@ DOTFILES_ROOT="$(pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
-printf "\n"
-
 install_dotfiles() {
 	info "installing dotfiles"
 
+	local base dst
 	while IFS= read -r src; do
-		local base dst
 		base="$(basename "${src%.*}")"
 		dst="$HOME/.${base}"
 		link_file "$src" "$dst"

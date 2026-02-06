@@ -13,7 +13,8 @@ run_installer() {
 	if bash "$installer"; then
 		success "done $installer"
 	else
-		fail "installer failed: $installer"
+		local code=$?
+		warn "installer failed ($code): $installer"
 	fi
 }
 
@@ -21,13 +22,14 @@ if [[ -x "./system/install.sh" ]]; then
 	run_installer "./system/install.sh"
 fi
 
-find . -name install.sh \
-	-not -path './.git/*' \
-	-not -path './.devcontainer/*' \
-	-not -path './script/*' \
-	-not -path './install.sh' \
-	-not -path './system/install.sh' \
-	| sort \
-	| while IFS= read -r installer; do
-		run_installer "$installer"
-	done
+while IFS= read -r installer; do
+	run_installer "$installer"
+done < <(
+	find . -name install.sh \
+		-not -path './.git/*' \
+		-not -path './.devcontainer/*' \
+		-not -path './script/*' \
+		-not -path './install.sh' \
+		-not -path './system/install.sh' \
+		| sort
+)

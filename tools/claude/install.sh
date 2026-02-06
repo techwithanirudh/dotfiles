@@ -14,3 +14,4 @@ fi
 
 info "installing claude"
 curl -fsSL https://claude.ai/install.sh | bash
+success "claude installed"
