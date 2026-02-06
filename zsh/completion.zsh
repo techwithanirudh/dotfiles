@@ -1,5 +1,3 @@
-# shell/completion.zsh
-
 # Zsh completion system.
 # This is loaded last by zsh/zshrc.symlink.
 

@@ -1,5 +1,3 @@
-# git/aliases.zsh
-
 # Use hub as git wrapper if installed.
 if (( $+commands[hub] )); then
 	hub_path="$(command -v hub 2>/dev/null)"

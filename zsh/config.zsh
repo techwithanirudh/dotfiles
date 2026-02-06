@@ -1,5 +1,3 @@
-# zsh/config.zsh
-
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

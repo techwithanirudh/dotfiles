@@ -1,5 +1,3 @@
-# zsh/localrc.zsh
-
 # Local, untracked overrides. Put secrets, tokens, and machine-specific env here.
 # Example file (tracked): $ZSH/zsh/localrc.symlink.example -> ~/.localrc
 

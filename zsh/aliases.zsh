@@ -1,5 +1,3 @@
-# shell/aliases.zsh
-
 # Easier navigation
 alias ..="cd .."
 alias ...="cd ../.."

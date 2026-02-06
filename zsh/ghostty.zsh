@@ -1,5 +1,3 @@
-# shell/ghostty.zsh
-
 autoload -Uz add-zsh-hook
 
 __ghostty_title_shell="${SHELL:-/bin/zsh}"
