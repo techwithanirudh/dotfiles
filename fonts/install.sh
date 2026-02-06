@@ -5,8 +5,8 @@ DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
-if [[ -n "${SSH_CLIENT:-}" || -n "${SSH_TTY:-}" || -n "${SSH_CONNECTION:-}" ]]; then
-	info "fonts: SSH session detected; skipping font install"
+if [[ -z "${DISPLAY:-}" && -z "${WAYLAND_DISPLAY:-}" ]]; then
+	info "fonts: no display detected (headless); skipping font install"
 	exit 0
 fi
 
