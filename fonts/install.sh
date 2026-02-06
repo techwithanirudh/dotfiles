@@ -5,6 +5,11 @@ DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 # shellcheck source=/dev/null
 source "$DOTFILES_ROOT/script/lib/index.sh"
 
+if [[ -n "${SSH_CLIENT:-}" || -n "${SSH_TTY:-}" || -n "${SSH_CONNECTION:-}" ]]; then
+	info "fonts: SSH session detected; skipping font install"
+	exit 0
+fi
+
 need_cmd fc-cache
 
 fonts_dir="$HOME/.local/share/fonts"
