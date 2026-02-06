@@ -1,5 +1,7 @@
-- Add Agent Skills, and proper AI Config
+- Add Agent Skills, and proper AI Config (Skills + Promtps + VErcel)
 - Add Commit Lint + Shell Formatting + Lint
 - Both CI / CD and Local Formatting
 - Update all devcontainers to the current devcontainer file. Run tests on both envbuilder and DiD to see if the dotfiles apply properly
 - DO NOT RUN DOTFILES ON main host of Docker, only in Docker devcontainers
+- Terminal autocomplete is borked
+- error: could not lock config file /home/coder/.gitconfig: Read-only file system (Read Only Symlinks)
