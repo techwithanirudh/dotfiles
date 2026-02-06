@@ -2,12 +2,18 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
+DOTFILES_ROOT="$(pwd -P)"
+source "$DOTFILES_ROOT/script/lib/log.sh"
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 run_installer() {
 	local installer="$1"
-	echo "[install] $installer"
-	bash "$installer"
+	info "installing $(basename "$(dirname "$installer")")/$(basename "$installer")"
+	if bash "$installer"; then
+		success "installed $installer"
+	else
+		fail "installer failed: $installer"
+	fi
 }
 
 if [[ -x "./system/install.sh" ]]; then

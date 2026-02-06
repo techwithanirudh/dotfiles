@@ -4,25 +4,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT="$(pwd -P)"
 
+source "$DOTFILES_ROOT/script/lib/log.sh"
+
 echo ""
-
-info() {
-	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$*"
-}
-
-user() {
-	printf "\r  [ \033[0;33m??\033[0m ] %s\n" "$*"
-}
-
-success() {
-	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$*"
-}
-
-fail() {
-	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$*"
-	echo ""
-	exit 1
-}
 
 backup_path() {
 	local dst="$1"

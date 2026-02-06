@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ "$(uname -s)" != "Linux" ]]; then
-	echo "[fonts] Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
-	exit 1
-fi
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/log.sh"
 
 need_cmd() {
 	if ! command -v "$1" >/dev/null 2>&1; then
@@ -32,11 +31,11 @@ install_zip() {
 	local label="$2"
 	local dest="$3"
 
-	echo "[fonts] downloading $label"
+	info "fonts: downloading $label"
 	local zip_path="$tmp_dir/$label.zip"
 	curl -fsSL "$url" -o "$zip_path"
 
-	echo "[fonts] installing $label -> $dest"
+	info "fonts: installing $label"
 	mkdir -p "$dest"
 	unzip -o -q "$zip_path" -d "$dest"
 }
@@ -47,8 +46,8 @@ install_zip \
 	"$fonts_dir/JetBrainsMono-NerdFont"
 
 if command -v fc-cache >/dev/null 2>&1; then
-	echo "[fonts] refreshing font cache"
+	info "fonts: refreshing font cache"
 	fc-cache -f "$fonts_dir" >/dev/null 2>&1 || true
 fi
 
-echo "[fonts] done"
+success "fonts: done"

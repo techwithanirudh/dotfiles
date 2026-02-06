@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ "$(uname -s)" != "Linux" ]]; then
-	echo "[vscode] Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
-	exit 1
-fi
-
 DOTFILES_ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"
 
 backup_path() {

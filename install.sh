@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ "$(uname -s)" != "Linux" ]]; then
-	echo "This dotfiles repo is Linux-only (Coder runtime). Refusing to run on: $(uname -s)" >&2
-	exit 1
-fi
-
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# shellcheck source=/dev/null
+source "$repo_root/script/lib/log.sh"
+
+if [[ "$(uname -s)" != "Linux" ]]; then
+	fail "Linux-only (Coder runtime). Refusing to run on: $(uname -s)"
+fi
 
 "$repo_root/script/bootstrap"
 

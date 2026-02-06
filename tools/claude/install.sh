@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/log.sh"
+
 if command -v claude >/dev/null 2>&1; then
-	echo "claude already installed"
+	success "claude already installed"
 	exit 0
 fi
 
@@ -11,5 +15,5 @@ if ! command -v curl >/dev/null 2>&1; then
 	exit 1
 fi
 
-echo "installing claude"
+info "installing claude"
 curl -fsSL https://claude.ai/install.sh | bash

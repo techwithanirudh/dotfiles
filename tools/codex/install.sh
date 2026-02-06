@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
+# shellcheck source=/dev/null
+source "$DOTFILES_ROOT/script/lib/log.sh"
+
 if command -v codex >/dev/null 2>&1; then
-	echo "codex already installed"
+	success "codex already installed"
 	exit 0
 fi
 
 if ! command -v npm >/dev/null 2>&1; then
-	echo "npm not found; skipping codex install"
+	info "npm not found; skipping codex install"
 	exit 0
 fi
 
-echo "installing codex via npm"
+info "installing codex via npm"
 npm i -g @openai/codex
