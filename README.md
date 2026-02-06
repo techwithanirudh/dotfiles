@@ -10,7 +10,6 @@ Holman-style topic dotfiles.
 
 Environment knobs:
 
-- `DOTFILES_FORCE=1`: overwrite existing targets instead of backing up.
 - `DOTFILES_SKIP_INSTALL=1`: only link files (skip installers).
 
 ## Layout

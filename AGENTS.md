@@ -30,5 +30,4 @@ This repo is a Holman-style, zsh-first dotfiles layout.
 
 ## Environment Knobs
 
-- `DOTFILES_FORCE=1`: overwrite existing targets (otherwise backups are created).
 - `DOTFILES_SKIP_INSTALL=1`: only link files (skip running installers).
