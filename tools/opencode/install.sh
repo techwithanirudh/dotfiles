@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if command -v opencode >/dev/null 2>&1; then
+if command -v opencode >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/opencode" ]]; then
 	echo "opencode already installed"
 	exit 0
 fi

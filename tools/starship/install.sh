@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Install starship into ~/.local/bin (no sudo), if missing.
-if command -v starship >/dev/null 2>&1; then
+if command -v starship >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/starship" ]]; then
 	echo "starship already installed"
 	exit 0
 fi
