@@ -6,8 +6,6 @@ DOTFILES_ROOT="$(pwd -P)"
 
 source "$DOTFILES_ROOT/script/lib/log.sh"
 
-printf "\n"
-
 backup_path() {
 	local dst="$1"
 	local base="${dst}.backup"
@@ -80,5 +78,4 @@ install_config() {
 
 install_dotfiles
 install_config
-printf "\n"
 success "bootstrap complete"

@@ -15,6 +15,15 @@ need_cmd curl
 need_cmd unzip
 
 fonts_dir="$HOME/.local/share/fonts"
+font_dest="$fonts_dir/JetBrainsMono-NerdFont"
+
+if [[ -d "$font_dest" ]]; then
+	if find "$font_dest" -maxdepth 1 -type f \( -name '*.ttf' -o -name '*.otf' \) -print -quit | grep -q .; then
+		success "fonts: already installed; skipping"
+		exit 0
+	fi
+fi
+
 tmp_dir="${TMPDIR:-/tmp}/dotfiles-fonts.$$"
 
 mkdir -p "$fonts_dir"
@@ -42,7 +51,7 @@ install_zip() {
 install_zip \
 	"https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip" \
 	"JetBrainsMono-NerdFont" \
-	"$fonts_dir/JetBrainsMono-NerdFont"
+	"$font_dest"
 
 if command -v fc-cache >/dev/null 2>&1; then
 	info "fonts: refreshing font cache"
