@@ -46,13 +46,8 @@ if [[ ! -f "$src" ]]; then
 	exit 0
 fi
 
-# VS Code (Linux) and code-server (Linux)
 link_targets=()
-
-# code-server
 link_targets+=("$HOME/.local/share/code-server/User/settings.json")
-
-# VS Code (stable)
 link_targets+=("$HOME/.config/Code/User/settings.json")
 
 # macOS VS Code
