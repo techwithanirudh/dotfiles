@@ -18,3 +18,8 @@ Set `DOTFILES_SKIP_INSTALL=1` when running `install.sh` to only link files.
 
 `system/install.sh` installs baseline packages via `apt-get` (Linux devcontainer assumption).
 This is run first by `script/install`.
+
+## Zsh Autosuggestions
+
+`tools/zsh-autosuggestions/install.sh` installs the plugin via git clone to `~/.zsh/zsh-autosuggestions`.
+`zsh/autosuggestions.zsh` sources it if present (or from Homebrew when available).
