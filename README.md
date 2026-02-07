@@ -32,3 +32,4 @@ Environment knobs:
 - https://github.com/jessfraz/dotfiles
 - https://github.com/jarrodwatts/claude-code-config (amazing prompt) (planning with files)
 - https://github.com/solatis/claude-config (amazing structure agents etc) (cc history)
+- preinstall plugins like ralph, and etc
