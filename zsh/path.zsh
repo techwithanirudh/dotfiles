@@ -10,3 +10,7 @@ fi
 if [[ -n "${DOTFILES:-}" && -d "$DOTFILES/bin" ]]; then
 	path=("$DOTFILES/bin" $path)
 fi
+
+if [[ -d "/usr/games" ]]; then
+	path=("/usr/games" $path)
+fi
