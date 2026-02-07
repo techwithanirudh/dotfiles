@@ -30,4 +30,5 @@ Environment knobs:
 ## Inspiration
 - https://github.com/holman/dotfiles
 - https://github.com/jessfraz/dotfiles
-- https://github.com/jarrodwatts/claude-code-config
+- https://github.com/jarrodwatts/claude-code-config (amazing prompt)
+- https://github.com/solatis/claude-config (amazing structure agents etc)
