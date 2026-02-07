@@ -15,6 +15,17 @@ copy_env_example() {
 	fi
 }
 
+install_git_config() {
+	echo "📂 Installing Git configuration..."
+	if [ -f /mnt/home/coder/git/config ]; then
+		rsync -a /mnt/home/coder/git/ ~/.config/git/
+	elif [ -d /mnt/home/coder/.gitconfig ]; then
+		rsync -a /mnt/home/coder/.gitconfig ~/.gitconfig
+	else
+		echo "⚠️ Git configuration directory not found."
+	fi
+}
+
 install_ssh_config() {
 	echo "🔑 Installing SSH configuration..."
 	if [ -d /mnt/home/coder/.ssh ]; then
@@ -57,5 +68,6 @@ personalize() {
 
 copy_env_example
 install_ssh_config
+install_git_config
 install_dotfiles
 personalize
