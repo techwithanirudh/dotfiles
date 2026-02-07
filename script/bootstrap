@@ -14,6 +14,11 @@ install_dotfiles() {
 	while IFS= read -r src; do
 		base="$(basename "${src%.*}")"
 		dst="$HOME/.${base}"
+		if [[ "$base" == "gitconfig" && "$src" == "$DOTFILES_ROOT/git/gitconfig.symlink" ]]; then
+			mkdir -p "$(dirname "$dst")"
+			cp -f "$src" "$dst"
+			continue
+		fi
 		link_file "$src" "$dst"
 	done < <(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*/.git/*' | sort)
 }
