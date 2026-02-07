@@ -15,4 +15,3 @@ fi
 info "installing zsh-autosuggestions to $install_dir"
 mkdir -p "$(dirname "$install_dir")"
 git clone https://github.com/zsh-users/zsh-autosuggestions "$install_dir"
-success "zsh-autosuggestions installed"

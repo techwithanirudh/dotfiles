@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# Ensure "git config --global" writes to a writable local file.
-export GIT_CONFIG_GLOBAL="$HOME/.gitconfig.local"
