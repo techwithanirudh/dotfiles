@@ -1,7 +1,7 @@
 # Intent Markers
 
 Markers suppress QR checks for intentional code patterns.
-\
+
 ## Format
 
 `:MARKER: [what]; [why]`
