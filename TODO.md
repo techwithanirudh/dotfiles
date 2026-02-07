@@ -2,4 +2,7 @@
 - Add Commit Lint + Shell Formatting + Lint
 - Both CI / CD and Local Formatting
 - Update all devcontainers to the current devcontainer file. Run tests on both envbuilder and DiD to see if the dotfiles apply properly
+- Git Config's aren't passed through (use coder credentials thing to pass them through devcontainer)
+
+# Skip
 - DO NOT RUN DOTFILES ON main host of Docker, only in Docker devcontainers
