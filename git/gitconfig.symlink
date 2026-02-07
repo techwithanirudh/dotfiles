@@ -179,6 +179,9 @@
 [url "git://gist.github.com/"]
 	insteadOf = gist:
 
+[credential]
+	helper = !gh auth git-credential
+
 [include]
 	# Put machine- or identity-specific settings here (name/email, signing, etc.).
 	path = ~/.gitconfig.local
