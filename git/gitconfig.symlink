@@ -182,5 +182,3 @@
 [include]
 	# Put machine- or identity-specific settings here (name/email, signing, etc.).
 	path = ~/.gitconfig.local
-[credential]
-	helper = "!f() { /home/coder/.vscode-server/bin/bdd88df003631aaa0bcbe057cb0a940b80a476fa/node /tmp/vscode-remote-containers-fcfd5117-be41-4477-9b29-df2338626770.js git-credential-helper $*; }; f"
