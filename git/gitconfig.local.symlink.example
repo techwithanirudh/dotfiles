@@ -1,11 +1,5 @@
-# ~/.gitconfig.local
-#
-# Copy to ~/.gitconfig.local and edit.
-
 [user]
-	name = Your Name
-	email = you@example.com
-
-[commit]
-	# If you don't use GPG signing in this environment, set to false here.
-	gpgsign = false
+        name = AUTHORNAME
+        email = AUTHOREMAIL
+[credential]
+        helper = GIT_CREDENTIAL_HELPER
