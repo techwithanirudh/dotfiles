@@ -16,7 +16,17 @@ install_dotfiles() {
 		dst="$HOME/.${base}"
 		if [[ "$base" == "gitconfig" && "$src" == "$DOTFILES_ROOT/git/gitconfig.symlink" ]]; then
 			mkdir -p "$(dirname "$dst")"
+			if [[ -f "$dst" && ! -f "$HOME/.gitconfig.local" ]]; then
+				mv "$dst" "$HOME/.gitconfig.local"
+				success "migrated $dst to ~/.gitconfig.local"
+			elif [[ -f "$dst" ]]; then
+				local backup
+				backup="$(backup_path "$dst")"
+				mv "$dst" "$backup"
+				success "backed up $dst to $backup"
+			fi
 			cp -f "$src" "$dst"
+			success "installed $dst"
 			continue
 		fi
 		link_file "$src" "$dst"
