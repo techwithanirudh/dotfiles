@@ -16,14 +16,22 @@ install_dotfiles() {
 		dst="$HOME/.${base}"
 		if [[ "$base" == "gitconfig" && "$src" == "$DOTFILES_ROOT/git/gitconfig.symlink" ]]; then
 			mkdir -p "$(dirname "$dst")"
+			# Merge machine-specific settings into ~/.gitconfig.local
 			if [[ -f "$dst" && ! -f "$HOME/.gitconfig.local" ]]; then
-				mv "$dst" "$HOME/.gitconfig.local"
-				success "migrated $dst to ~/.gitconfig.local"
-			elif [[ -f "$dst" ]]; then
-				local backup
-				backup="$(backup_path "$dst")"
-				mv "$dst" "$backup"
-				success "backed up $dst to $backup"
+				local key value dotfiles_value migrated=0
+				while IFS='=' read -r key value; do
+					[[ -z "$key" ]] && continue
+					# Skip include directives — the dotfiles config handles those
+					[[ "$key" == include.* ]] && continue
+					dotfiles_value="$(git config --file "$src" --get "$key" 2>/dev/null || true)"
+					if [[ "$dotfiles_value" != "$value" ]]; then
+						git config --file "$HOME/.gitconfig.local" "$key" "$value"
+						migrated=1
+					fi
+				done < <(git config --list --file "$dst" 2>/dev/null)
+				if [[ "$migrated" -eq 1 ]]; then
+					success "migrated machine-specific settings to ~/.gitconfig.local"
+				fi
 			fi
 			cp -f "$src" "$dst"
 			success "installed $dst"
