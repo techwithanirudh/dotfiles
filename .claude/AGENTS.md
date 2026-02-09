@@ -1,1 +1,0 @@
-/workspaces/dotfiles/.agents/AGENTS.md
