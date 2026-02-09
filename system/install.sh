@@ -23,13 +23,4 @@ as_root env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recom
 	zip \
 	zsh
 
-ZSH_PATH="$(command -v zsh)"
-current_shell="$(getent passwd "$(id -un)" 2>/dev/null | cut -d: -f7 || true)"
-if [[ "$current_shell" != "$ZSH_PATH" ]]; then
-	info "changing default shell to zsh"
-	grep -qx "$ZSH_PATH" /etc/shells 2>/dev/null || as_root bash -c "echo '$ZSH_PATH' >> /etc/shells"
-	as_root chsh -s "$ZSH_PATH" "$(id -un)"
-	success "default shell changed to zsh"
-else
-	success "default shell is already zsh"
-fi
+as_root chsh -s "$(command -v zsh)" "$(id -un)"
