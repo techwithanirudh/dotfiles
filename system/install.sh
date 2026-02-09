@@ -22,3 +22,5 @@ as_root env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recom
 	unzip \
 	zip \
 	zsh
+
+as_root chsh -s "$(command -v zsh)" "$(id -un)"
