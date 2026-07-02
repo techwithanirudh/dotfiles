@@ -11,8 +11,8 @@ REPO="https://github.com/mattpocock/skills"
 
 # Skills to preinstall globally (available in every workspace, any repo).
 # NOTE: upstream renamed "diagnose" -> "diagnosing-bugs".
+# grill-me is omitted intentionally: grill-with-docs already covers it.
 SKILLS=(
-	grill-me
 	grill-with-docs
 	improve-codebase-architecture
 	handoff
