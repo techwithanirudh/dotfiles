@@ -12,6 +12,7 @@ fi
 info "system: installing base packages"
 as_root env DEBIAN_FRONTEND=noninteractive apt-get update -y
 as_root env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+	build-essential \
 	ca-certificates \
 	curl \
 	file \
