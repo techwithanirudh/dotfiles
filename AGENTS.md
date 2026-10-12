@@ -10,7 +10,7 @@ This repo is a Holman-style, zsh-first dotfiles layout.
 
 ## Zsh Loading Model
 
-- `~/.zshrc` is symlinked to `zsh/zshrc.symlink`.
+- `~/.zshrc` is a stub that sources `zsh/zshrc.symlink` (installers append to the stub, not the repo).
 - `zsh/zshrc.symlink` loads all `*.zsh` files under the dotfiles root (Holman-style):
   - `path.zsh` first
   - everything else next

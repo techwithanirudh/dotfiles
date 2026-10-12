@@ -50,8 +50,55 @@ install_dotfiles() {
 			success "wrote $dst (includes $src)"
 			continue
 		fi
+		if [[ "$base" == "zshrc" && "$src" == "$DOTFILES_ROOT/zsh/zshrc.symlink" ]]; then
+			install_zshrc_stub "$src" "$dst"
+			continue
+		fi
 		link_file "$src" "$dst"
 	done < <(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*/.git/*' | sort)
+}
+
+# ~/.zshrc is a stub that sources the repo copy, so installers (bun, nvm, ...)
+# append to the stub instead of dirtying this repo.
+install_zshrc_stub() {
+	local src="$1" dst="$2" stub rel added
+	stub="$(printf '# Managed by dotfiles: config lives in the sourced file.\n# Installers and local tweaks can append below.\nsource %s\n' "$src")"
+
+	if [[ -f "$dst" && ! -L "$dst" ]] && head -n 3 "$dst" | cmp -s - <(printf '%s\n' "$stub"); then
+		success "zshrc already sources $src"
+		return
+	fi
+
+	# Rescue lines installers appended to the repo copy through the old symlink.
+	# Only when the change is pure additions; anything else is left for review.
+	rel="${src#"$DOTFILES_ROOT/"}"
+	added=""
+	local diff=""
+	if git -C "$DOTFILES_ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+		diff="$(git -C "$DOTFILES_ROOT" diff -U0 -- "$rel")"
+	fi
+	if [[ -n "$diff" ]] && ! grep -q '^-[^-]' <<<"$diff"; then
+		added="$(grep '^+' <<<"$diff" | grep -v '^+++' | cut -c2-)"
+		git -C "$DOTFILES_ROOT" checkout -- "$rel"
+		success "moved local additions from $rel into $dst"
+	fi
+
+	if [[ -L "$dst" ]]; then
+		rm -f "$dst"
+	elif [[ -e "$dst" ]]; then
+		local backup
+		backup="$(backup_path "$dst")"
+		mv "$dst" "$backup"
+		success "moved $dst to $backup"
+	fi
+
+	{
+		printf '%s\n' "$stub"
+		if [[ -n "$added" ]]; then
+			printf '%s\n' "$added"
+		fi
+	} > "$dst"
+	success "wrote $dst (sources $src)"
 }
 
 install_config() {

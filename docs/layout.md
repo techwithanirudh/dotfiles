@@ -9,7 +9,7 @@ Files that should live in `$HOME` are tracked in the repo with a `.symlink` suff
 
 Example:
 
-- `zsh/zshrc.symlink` -> `~/.zshrc`
+- `zsh/zshrc.symlink` -> sourced from `~/.zshrc` (a stub; see `docs/bootstrap.md`)
 
 This avoids hidden files in the repo while keeping the home directory clean.
 
@@ -24,7 +24,7 @@ Example:
 
 ## Zsh Loading
 
-`~/.zshrc` points to `zsh/zshrc.symlink`, which loads all `*.zsh` files under the repo.
+`~/.zshrc` sources `zsh/zshrc.symlink`, which loads all `*.zsh` files under the repo.
 
 Load order:
 

@@ -13,7 +13,7 @@ Environment knobs:
 ## Layout
 
 - `*/**/*.symlink`: symlinked into `$HOME` as dotfiles by `script/bootstrap`.
-- `zsh/zshrc.symlink`: the main entrypoint, symlinked to `~/.zshrc`.
+- `zsh/zshrc.symlink`: the main entrypoint, sourced from a stub `~/.zshrc`.
 - `*/**/*.zsh`: sourced automatically by `~/.zshrc` (topic configs).
 - `config/*`: symlinked into `~/.config/*` by `script/bootstrap`.
 - `*/install.sh`: executed by `script/install` (tool installs, editor config linking, etc.).

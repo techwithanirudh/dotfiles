@@ -10,7 +10,12 @@
 
 ## Backups
 
-If a destination already exists (e.g., `~/.zshrc`), bootstrap moves it to a backup name and then links the repo version. This applies to every symlink target, not just `~/.zshrc`.
+If a destination already exists, bootstrap moves it to a backup name and then links the repo version.
+
+Two exceptions are written as small stubs instead of links, so installers and tools that edit them don't dirty this repo:
+
+- `~/.zshrc` sources `zsh/zshrc.symlink`; installers (bun, nvm, ...) append below it. Lines previously appended to the repo copy through the old symlink are moved into the stub.
+- `~/.gitconfig` includes `git/gitconfig.symlink`; `git config --global` writes land in the stub.
 
 Backup naming:
 
