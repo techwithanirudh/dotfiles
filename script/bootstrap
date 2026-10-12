@@ -15,7 +15,19 @@ install_dotfiles() {
 		base="$(basename "${src%.*}")"
 		dst="$HOME/.${base}"
 		if [[ "$base" == "gitconfig" && "$src" == "$DOTFILES_ROOT/git/gitconfig.symlink" ]]; then
+			# ~/.gitconfig is a stub that includes the repo copy: dotfiles updates
+			# apply live, while tools that write via `git config --global` (VS Code,
+			# gh, etc.) write to the stub instead of dirtying this repo.
+			local stub
+			stub="$(printf '# Managed by dotfiles: settings live in the included file.\n# Local `git config --global` writes land below and override it.\n[include]\n\tpath = %s\n' "$src")"
 			mkdir -p "$(dirname "$dst")"
+			if [[ -L "$dst" ]]; then
+				rm -f "$dst"
+			fi
+			if [[ -f "$dst" ]] && head -n 4 "$dst" | cmp -s - <(printf '%s\n' "$stub"); then
+				success "gitconfig already includes $src"
+				continue
+			fi
 			if [[ -f "$dst" ]]; then
 				if [[ -f "$HOME/.gitconfig.local" ]]; then
 					local backup
@@ -34,7 +46,8 @@ install_dotfiles() {
 					[[ "$migrated" -eq 1 ]] && success "migrated machine-specific settings to ~/.gitconfig.local"
 				fi
 			fi
-			cp -f "$src" "$dst"
+			printf '%s\n' "$stub" > "$dst"
+			success "wrote $dst (includes $src)"
 			continue
 		fi
 		link_file "$src" "$dst"

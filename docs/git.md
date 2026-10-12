@@ -2,7 +2,8 @@
 
 This repo includes:
 
-- `git/gitconfig.symlink` -> `~/.gitconfig`
+- `git/gitconfig.symlink` -> included from `~/.gitconfig` (a small stub, not a link, so
+  `git config --global` writes from tools land in the stub instead of this repo)
 - `git/gitignore.symlink` -> `~/.gitignore`
 - `git/gitattributes.symlink` -> `~/.gitattributes`
 
