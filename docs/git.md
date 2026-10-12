@@ -23,7 +23,13 @@ These work because `zsh/path.zsh` adds `bin/` to PATH.
 
 ## GitHub Auth
 
-The credential helper in `gitconfig.symlink` uses `gh auth git-credential` by default.
-In Coder workspaces (`$CODER` set), it asks `coder external-auth access-token primary-github`
-for a fresh token instead, and `tools/coder/github.zsh` wraps `gh` the same way.
-Don't set a static `GH_TOKEN` in Coder templates; it expires and shadows these.
+The credential helper in `gitconfig.symlink` (and the `gh` wrapper in `tools/coder/github.zsh`, Coder only):
+
+1. Uses gh's stored login when there is one, ignoring `GH_TOKEN`/`GITHUB_TOKEN`.
+   It covers every org you belong to and doesn't expire.
+2. Otherwise, in Coder workspaces (`$CODER` set), asks
+   `coder external-auth access-token primary-github` for a fresh token. That token comes
+   from the Coder GitHub App, so it only reaches accounts/orgs where the app is installed.
+3. Otherwise, plain `gh auth git-credential`.
+
+Don't set a static `GH_TOKEN` in Coder templates; it goes stale.
