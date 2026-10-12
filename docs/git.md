@@ -19,3 +19,10 @@ Holman-style git helpers are in `bin/` and are available as git subcommands:
 - `git copy-branch-name`, `git edit-new`
 
 These work because `zsh/path.zsh` adds `bin/` to PATH.
+
+## GitHub Auth
+
+The credential helper in `gitconfig.symlink` uses `gh auth git-credential` by default.
+In Coder workspaces (`$CODER` set), it asks `coder external-auth access-token primary-github`
+for a fresh token instead, and `tools/coder/github.zsh` wraps `gh` the same way.
+Don't set a static `GH_TOKEN` in Coder templates; it expires and shadows these.

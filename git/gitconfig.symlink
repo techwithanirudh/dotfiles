@@ -180,7 +180,10 @@
 	insteadOf = gist:
 
 [credential]
-	helper = !gh auth git-credential
+	# In Coder workspaces, ask Coder for a fresh GitHub token each time; a
+	# GH_TOKEN captured at workspace start expires (GitHub App tokens last ~8h).
+	# Everywhere else, defer to gh's stored login.
+	helper = "!f() { if [ -n \"$CODER\" ] && command -v coder >/dev/null 2>&1; then cat >/dev/null; [ \"$1\" = get ] || return 0; echo username=x-access-token; echo \"password=$(coder external-auth access-token primary-github)\"; else gh auth git-credential \"$@\"; fi; }; f"
 
 [include]
 	# Put machine- or identity-specific settings here (name/email, signing, etc.).
